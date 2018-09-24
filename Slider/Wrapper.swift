@@ -28,8 +28,8 @@ class WrapperView: UIView {
     private func formatViews() {
         self.backgroundColor = UIColor.white
         
-        slider.suggestedPrice = 200
-        slider.currentPrice = 200
+        slider.suggestedPrice = 100
+        slider.currentPrice = 100
     }
     
     private func addConstraintsToSubviews() {

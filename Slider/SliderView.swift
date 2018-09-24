@@ -8,7 +8,7 @@ class SliderView: UIView {
             currentPrice = round(maxValue)
         }
     }
-    var maxValue: Float = 400 {
+    var maxValue: Float = 200 {
         didSet {
             currentPrice = round(maxValue)
         }
@@ -89,7 +89,6 @@ class SliderView: UIView {
     }
     
     private func formatViews() {
-        
         self.selectedBackground.layer.cornerRadius = 3
         self.selectedBackground.backgroundColor = UIColor.orange
         
