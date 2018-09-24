@@ -7,14 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9DCE598C6AFA8066B81E9272 /* Pods_Slider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 731607566927D5C6A6A7B53D /* Pods_Slider.framework */; };
 		A1F98CCB21597A4E00B129BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F98CCA21597A4E00B129BE /* AppDelegate.swift */; };
 		A1F98CCD21597A4E00B129BE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F98CCC21597A4E00B129BE /* ViewController.swift */; };
 		A1F98CD021597A4F00B129BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1F98CCE21597A4F00B129BE /* Main.storyboard */; };
 		A1F98CD221597A5000B129BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1F98CD121597A5000B129BE /* Assets.xcassets */; };
 		A1F98CD521597A5000B129BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1F98CD321597A5000B129BE /* LaunchScreen.storyboard */; };
+		A1F98CDD21597A6000B129BE /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F98CDC21597A6000B129BE /* SliderView.swift */; };
+		A1F98CDF215983C200B129BE /* Wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F98CDE215983C200B129BE /* Wrapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		701627E8D5FCF23CBC1C1411 /* Pods-Slider.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Slider.release.xcconfig"; path = "Pods/Target Support Files/Pods-Slider/Pods-Slider.release.xcconfig"; sourceTree = "<group>"; };
+		731607566927D5C6A6A7B53D /* Pods_Slider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Slider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8400F1D3CD67E124E98BA8DE /* Pods-Slider.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Slider.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Slider/Pods-Slider.debug.xcconfig"; sourceTree = "<group>"; };
 		A1F98CC721597A4E00B129BE /* Slider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1F98CCA21597A4E00B129BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1F98CCC21597A4E00B129BE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +28,8 @@
 		A1F98CD121597A5000B129BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A1F98CD421597A5000B129BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A1F98CD621597A5000B129BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1F98CDC21597A6000B129BE /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
+		A1F98CDE215983C200B129BE /* Wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wrapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +37,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DCE598C6AFA8066B81E9272 /* Pods_Slider.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9AEFB55F7BAC34BEB049A917 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8400F1D3CD67E124E98BA8DE /* Pods-Slider.debug.xcconfig */,
+				701627E8D5FCF23CBC1C1411 /* Pods-Slider.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A1F98CBE21597A4E00B129BE = {
 			isa = PBXGroup;
 			children = (
 				A1F98CC921597A4E00B129BE /* Slider */,
 				A1F98CC821597A4E00B129BE /* Products */,
+				9AEFB55F7BAC34BEB049A917 /* Pods */,
+				D0F91E4C29762796DDC1EB38 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,8 +80,18 @@
 				A1F98CD121597A5000B129BE /* Assets.xcassets */,
 				A1F98CD321597A5000B129BE /* LaunchScreen.storyboard */,
 				A1F98CD621597A5000B129BE /* Info.plist */,
+				A1F98CDE215983C200B129BE /* Wrapper.swift */,
+				A1F98CDC21597A6000B129BE /* SliderView.swift */,
 			);
 			path = Slider;
+			sourceTree = "<group>";
+		};
+		D0F91E4C29762796DDC1EB38 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				731607566927D5C6A6A7B53D /* Pods_Slider.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +101,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A1F98CD921597A5000B129BE /* Build configuration list for PBXNativeTarget "Slider" */;
 			buildPhases = (
+				DC310D67D1245B3E8EAD6766 /* [CP] Check Pods Manifest.lock */,
 				A1F98CC321597A4E00B129BE /* Sources */,
 				A1F98CC421597A4E00B129BE /* Frameworks */,
 				A1F98CC521597A4E00B129BE /* Resources */,
+				04F559A052AF122A6A0C9D34 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -130,11 +162,52 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		04F559A052AF122A6A0C9D34 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Slider/Pods-Slider-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Slider/Pods-Slider-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DC310D67D1245B3E8EAD6766 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Slider-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A1F98CC321597A4E00B129BE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1F98CDD21597A6000B129BE /* SliderView.swift in Sources */,
+				A1F98CDF215983C200B129BE /* Wrapper.swift in Sources */,
 				A1F98CCD21597A4E00B129BE /* ViewController.swift in Sources */,
 				A1F98CCB21597A4E00B129BE /* AppDelegate.swift in Sources */,
 			);
@@ -280,6 +353,7 @@
 		};
 		A1F98CDA21597A5000B129BE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8400F1D3CD67E124E98BA8DE /* Pods-Slider.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -298,6 +372,7 @@
 		};
 		A1F98CDB21597A5000B129BE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 701627E8D5FCF23CBC1C1411 /* Pods-Slider.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
