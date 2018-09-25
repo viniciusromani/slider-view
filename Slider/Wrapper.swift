@@ -3,7 +3,7 @@ import SnapKit
 
 class WrapperView: UIView {
     
-    let slider = SliderView()
+    let slider = SteppedSliderView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,15 +27,13 @@ class WrapperView: UIView {
     
     private func formatViews() {
         self.backgroundColor = UIColor.white
-        
-        slider.suggestedPrice = 100
-        slider.currentPrice = 100
     }
     
     private func addConstraintsToSubviews() {
         slider.snp.makeConstraints { make in
             make.top.equalTo(self).inset(100)
             make.left.right.equalTo(self).inset(30)
+            make.height.equalTo(24)
         }
     }
 }
