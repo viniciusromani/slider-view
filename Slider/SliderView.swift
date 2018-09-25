@@ -40,10 +40,9 @@ class SteppedSliderView: UIView {
         
         let maximumX = self.frame.width - (self.thumb.frame.width / 2)
         self.rangeSpace = maximumX / CGFloat(self.steps)
-        print("range space \(rangeSpace)")
         
-        let gradientLayer = self.gradient(frame: self.selectedBackground.bounds)
-        self.selectedBackground.layer.addSublayer(gradientLayer)
+//        let gradientLayer = self.gradient(frame: self.selectedBackground.bounds)
+//        self.selectedBackground.layer.addSublayer(gradientLayer)
     }
     
     private func buildViews() {
@@ -60,6 +59,7 @@ class SteppedSliderView: UIView {
     
     private func formatViews() {
         self.selectedBackground.layer.cornerRadius = 3
+        self.selectedBackground.backgroundColor = UIColor.green
         
         self.unselectedBackground.layer.cornerRadius = 3
         self.unselectedBackground.backgroundColor = UIColor.lightGray
@@ -100,22 +100,8 @@ class SteppedSliderView: UIView {
         let translationX = self.calculateX(basedOn: translation)
         let currentX = CGFloat(self.currentStep) * self.rangeSpace
         
-        print("translation x \(translationX)")
-        print("current x \(translationX)")
-        
-        if translationX > currentX {
-            self.currentStep += 1
-            let xAxis = CGFloat(self.currentStep) * self.rangeSpace
-            print("x axis \(xAxis)")
-            self.thumb.center = CGPoint(x: xAxis, y: self.thumb.center.y)
-            recognizer.setTranslation(.zero, in: self)
-        } else if translationX < currentX {
-            self.currentStep -= 1
-            let xAxis = CGFloat(self.currentStep) * self.rangeSpace
-            print("x axis \(xAxis)")
-            self.thumb.center = CGPoint(x: xAxis, y: self.thumb.center.y)
-            recognizer.setTranslation(.zero, in: self)
-        }
+        self.updateCurrentStepFor(incoming: translationX, andCurrent: currentX)
+        self.moveThumb(for: recognizer)
     }
     
     private func calculateX(basedOn translation: CGPoint) -> CGFloat {
@@ -136,5 +122,23 @@ class SteppedSliderView: UIView {
         let roundedX = (self.thumb.center.x + translation.x).rounded(.toNearestOrEven)
         let xAxis = roundedX < minimumX ? minimumX: roundedX
         return xAxis
+    }
+    
+    private func updateCurrentStepFor(incoming incomingX: CGFloat, andCurrent currentX: CGFloat) {
+        if incomingX > currentX {
+            self.currentStep += 1
+            return
+        }
+        
+        if incomingX < currentX {
+            self.currentStep -= 1
+            return
+        }
+    }
+    
+    private func moveThumb(for panRecognizer: UIPanGestureRecognizer) {
+        let xAxis = CGFloat(self.currentStep) * self.rangeSpace
+        self.thumb.center = CGPoint(x: xAxis, y: self.thumb.center.y)
+        panRecognizer.setTranslation(.zero, in: self)
     }
 }
