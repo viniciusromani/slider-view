@@ -3,7 +3,7 @@ import SnapKit
 
 class WrapperView: UIView {
     
-    let slider = SteppedSliderView(steps: 4)
+    let slider = SteppedFuelSliderView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,7 +33,7 @@ class WrapperView: UIView {
         slider.snp.makeConstraints { make in
             make.top.equalTo(self).inset(100)
             make.left.right.equalTo(self).inset(30)
-            make.height.equalTo(24)
+            make.height.equalTo(45)
         }
     }
 }
