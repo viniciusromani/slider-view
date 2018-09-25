@@ -7,7 +7,13 @@ class SteppedSliderView: UIView {
     let unselectedBackground = UIView()
     let thumb = UIImageView()
     
-    init() {
+    private let steps: Int
+    private var currentStep: Int
+    private var rangeSpace: CGFloat = 0
+    
+    init(steps: Int) {
+        self.steps = steps
+        self.currentStep = steps / 2
         super.init(frame: .zero)
         self.buildViews()
     }
@@ -31,6 +37,10 @@ class SteppedSliderView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        let maximumX = self.frame.width - (self.thumb.frame.width / 2)
+        self.rangeSpace = maximumX / CGFloat(self.steps)
+        print("range space \(rangeSpace)")
         
         let gradientLayer = self.gradient(frame: self.selectedBackground.bounds)
         self.selectedBackground.layer.addSublayer(gradientLayer)
@@ -67,31 +77,51 @@ class SteppedSliderView: UIView {
             make.centerY.equalTo(self)
             make.height.equalTo(5)
         }
-
+        
         selectedBackground.snp.makeConstraints { make in
             make.left.centerY.equalTo(self.unselectedBackground)
             make.height.equalTo(6)
             make.width.equalTo(self.unselectedBackground).dividedBy(2)
         }
-
+        
         thumb.snp.makeConstraints { make in
             make.width.height.equalTo(24)
             make.centerX.equalTo(self)
-            make.centerY.equalTo(self.selectedBackground)
+            make.centerY.equalTo(self.unselectedBackground)
         }
     }
     
     @objc func thumbDidMove(_ recognizer: UIPanGestureRecognizer) {
+        guard recognizer.state == .ended else {
+            return
+        }
+        
         let translation = recognizer.translation(in: self)
-        let xAxis = self.calculateXAxis(basedOn: translation)
-        self.thumb.center = CGPoint(x: xAxis, y: self.thumb.center.y)
-        recognizer.setTranslation(.zero, in: self)
+        let translationX = self.calculateX(basedOn: translation)
+        let currentX = CGFloat(self.currentStep) * self.rangeSpace
+        
+        print("translation x \(translationX)")
+        print("current x \(translationX)")
+        
+        if translationX > currentX {
+            self.currentStep += 1
+            let xAxis = CGFloat(self.currentStep) * self.rangeSpace
+            print("x axis \(xAxis)")
+            self.thumb.center = CGPoint(x: xAxis, y: self.thumb.center.y)
+            recognizer.setTranslation(.zero, in: self)
+        } else if translationX < currentX {
+            self.currentStep -= 1
+            let xAxis = CGFloat(self.currentStep) * self.rangeSpace
+            print("x axis \(xAxis)")
+            self.thumb.center = CGPoint(x: xAxis, y: self.thumb.center.y)
+            recognizer.setTranslation(.zero, in: self)
+        }
     }
     
-    private func calculateXAxis(basedOn translation: CGPoint) -> CGFloat {
+    private func calculateX(basedOn translation: CGPoint) -> CGFloat {
         return translation.x > 0 ?
-                    calculateXForFurther(translation: translation):
-                    calculateXForPrevious(translation: translation)
+            self.calculateXForFurther(translation: translation):
+            self.calculateXForPrevious(translation: translation)
     }
     
     private func calculateXForFurther(translation: CGPoint) -> CGFloat {

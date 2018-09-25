@@ -3,7 +3,7 @@ import SnapKit
 
 class WrapperView: UIView {
     
-    let slider = SteppedSliderView()
+    let slider = SteppedSliderView(steps: 4)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
