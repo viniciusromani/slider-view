@@ -35,14 +35,20 @@ class SteppedSliderView: UIView {
         return layer
     }
     
+    private var gradientLayer = CAGradientLayer() {
+        didSet {
+            self.gradientLayer.cornerRadius = 3
+        }
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
         let maximumX = self.frame.width - (self.thumb.frame.width / 2)
         self.rangeSpace = maximumX / CGFloat(self.steps)
         
-//        let gradientLayer = self.gradient(frame: self.selectedBackground.bounds)
-//        self.selectedBackground.layer.addSublayer(gradientLayer)
+        self.gradientLayer = self.gradient(frame: self.selectedBackground.bounds)
+        self.selectedBackground.layer.addSublayer(self.gradientLayer)
     }
     
     private func buildViews() {
@@ -59,7 +65,7 @@ class SteppedSliderView: UIView {
     
     private func formatViews() {
         self.selectedBackground.layer.cornerRadius = 3
-        self.selectedBackground.backgroundColor = UIColor.green
+//        self.selectedBackground.backgroundColor = UIColor.green
         
         self.unselectedBackground.layer.cornerRadius = 3
         self.unselectedBackground.backgroundColor = UIColor.lightGray
@@ -81,11 +87,12 @@ class SteppedSliderView: UIView {
         selectedBackground.snp.makeConstraints { make in
             make.left.centerY.equalTo(self.unselectedBackground)
             make.height.equalTo(6)
-            make.width.equalTo(self.unselectedBackground).dividedBy(2)
+            let width = CGFloat(self.currentStep) * self.rangeSpace
+            make.width.equalTo(width)
         }
         
         thumb.snp.makeConstraints { make in
-            make.width.height.equalTo(24)
+            make.width.height.equalTo(30)
             make.centerX.equalTo(self)
             make.centerY.equalTo(self.unselectedBackground)
         }
@@ -102,6 +109,11 @@ class SteppedSliderView: UIView {
         
         self.updateCurrentStepFor(incoming: translationX, andCurrent: currentX)
         self.moveThumb(for: recognizer)
+        
+//        let width = self.thumb.frame.origin.x + self.thumb.frame.width
+//        selectedBackground.snp.updateConstraints { make in
+//            make.width.equalTo(width)
+//        }
     }
     
     private func calculateX(basedOn translation: CGPoint) -> CGFloat {
@@ -138,7 +150,19 @@ class SteppedSliderView: UIView {
     
     private func moveThumb(for panRecognizer: UIPanGestureRecognizer) {
         let xAxis = CGFloat(self.currentStep) * self.rangeSpace
-        self.thumb.center = CGPoint(x: xAxis, y: self.thumb.center.y)
-        panRecognizer.setTranslation(.zero, in: self)
+        
+        print("x axis \(xAxis)")
+        print("xAxis divided by 150 \(xAxis - 150)")
+        thumb.snp.updateConstraints { make in
+            make.centerX.equalTo(self).inset(xAxis - 150)
+        }
+        
+        self.gradientLayer.removeFromSuperlayer()
+        selectedBackground.snp.updateConstraints { make in
+            make.width.equalTo(xAxis)
+        }
+        
+//        self.thumb.center = CGPoint(x: xAxis, y: self.thumb.center.y)
+//        panRecognizer.setTranslation(.zero, in: self)
     }
 }
